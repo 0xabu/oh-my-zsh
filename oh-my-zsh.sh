@@ -74,7 +74,7 @@ if [[ $ZSH_DISABLE_COMPFIX != true ]]; then
     compinit -d "${ZSH_COMPDUMP}"
   fi
 else
-  compinit -i -d "${ZSH_COMPDUMP}"
+  compinit -u -d "${ZSH_COMPDUMP}"
 fi
 
 # Load all of the plugins that were defined in ~/.zshrc
