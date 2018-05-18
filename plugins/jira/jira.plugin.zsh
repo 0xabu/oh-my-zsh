@@ -5,7 +5,9 @@
 function jira() {
   emulate -L zsh
   local action jira_url jira_prefix
-  if [[ -f .jira-default-action ]]; then
+  if [[ -n "$1" ]]; then
+    action=$1
+  elif [[ -f .jira-default-action ]]; then
     action=$(cat .jira-default-action)
   elif [[ -f ~/.jira-default-action ]]; then
     action=$(cat ~/.jira-default-action)
@@ -58,7 +60,7 @@ function jira() {
   else
     # Anything that doesn't match a special action is considered an issue name
     # but `branch` is a special case that will parse the current git branch
-    if [[ "$action" == "br" ]]; then
+    if [[ "$action" == "branch" ]]; then
       local issue_arg=$(git rev-parse --abbrev-ref HEAD)
       local issue="${jira_prefix}${issue_arg}"
     else
